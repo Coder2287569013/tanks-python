@@ -7,7 +7,7 @@ from modules.maps import *
 pygame.init()
 
 #The example of loading the map. Soon, it'll be different
-level = load_map(map_data, 1)
+level = load_map(map_data, 0)
 
 #screen and clock
 sc = pygame.display.set_mode((w, h))
