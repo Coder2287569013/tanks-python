@@ -35,6 +35,5 @@ class Bullet(pygame.sprite.Sprite):
         for row in level:
             for block in row: 
                 if isinstance(block, BrickWall) and self.rect.colliderect(block.rect):
-                    row.remove(block)
                     block.change_image(self.direction)
                     self.kill()  

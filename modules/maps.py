@@ -19,13 +19,13 @@ def load_map(maps, index, w, h):
                     block = BrickWall(w * x, h * y, w, h, assets_blocks_data[0])
                     a.append(block)
                 elif value_x == "2":
-                    block = Block(w * x, h * y, w, h, assets_blocks_data[3])
+                    block = Block(w * x, h * y, w, h, assets_blocks_data[1])
                     a.append(block)
                 elif value_x == "3":
-                    block = Block(w * x, h * y, w, h, assets_blocks_data[4])
+                    block = Block(w * x, h * y, w, h, assets_blocks_data[2])
                     a.append(block)
                 elif value_x == "4":
-                    block = Block(w * x, h * y, w, h, assets_blocks_data[5])
+                    block = Block(w * x, h * y, w, h, assets_blocks_data[3])
                     a.append(block)
                 else: continue
             blocks.append(a)
