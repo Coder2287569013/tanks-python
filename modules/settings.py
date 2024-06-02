@@ -18,6 +18,7 @@ assets_blocks_content = os.listdir(assets_blocks_folder)
 assets_blocks_data = [os.path.join(assets_blocks_folder, file)
                for file in assets_blocks_content]
 
+#assets folder
 assets_folder = os.path.join(os.path.dirname(__file__), "../assets/")
 
 #list of maps in .txt files

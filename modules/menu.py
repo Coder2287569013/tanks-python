@@ -1,13 +1,13 @@
 import pygame
 import os
-from modules.settings import *
+from modules.settings import assets_folder, font
 
 pygame.init()
 
-logo_img = pygame.image.load(os.path.join(assets_folder, "logo.png"))
+logo_img = pygame.image.load(os.path.join(assets_folder, "icons/logo.png"))
 logo_img = pygame.transform.scale(logo_img, (450, 150))
 
-tank_img = pygame.image.load(os.path.join(assets_folder, "tank_player.png"))
+tank_img = pygame.image.load(os.path.join(assets_folder, "tanks/tank_player.png"))
 tank_img = pygame.transform.scale(pygame.transform.rotate(tank_img, 270), (30, 24))
 
 start_text = font.render('start game', True, (255, 255, 255))

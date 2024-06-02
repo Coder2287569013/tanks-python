@@ -3,17 +3,21 @@ from modules.settings import *
 from modules.blocks import *
 from modules.maps import *
 from modules.menu import *
+from modules.bullet import *
 
 pygame.init()
 
 # The example of loading the map. Soon, it'll be different
-level = load_map(map_data, 2)
+level = load_map(map_data, 2, 40, 40)
 
 # Screen and clock
 sc = pygame.display.set_mode((w, h))
 surface_gameplay = pygame.Surface((w_s, h_s))
 clock = pygame.time.Clock()
 
+bullet_group = pygame.sprite.Group()
+bullet = Bullet(250, 20, "left")
+bullet_group.add(bullet)
 # Main loop
 while game:
     # Drawing objects on display
@@ -24,7 +28,10 @@ while game:
         # drawing a map and other objects
         sc.fill((120, 120, 120))
         sc.blit(surface_gameplay, (0, 0))
-        draw_map(level, 40, 40, surface_gameplay)
+        surface_gameplay.fill((0, 0, 0))
+        draw_map(level, surface_gameplay)
+        bullet_group.draw(surface_gameplay)
+        bullet_group.update(level)
         
     # Updating the screen
     pygame.display.update()
