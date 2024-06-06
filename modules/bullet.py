@@ -9,22 +9,24 @@ bullet_img = pygame.image.load(os.path.join(assets_folder, "icons/image.png"))
 
 #Bullet class and it's methods
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, x, y, direction):
+    def __init__(self, x, y, w, h, direction):
         pygame.sprite.Sprite.__init__(self)
         self.speed = 2
-        self.image = pygame.transform.rotate(bullet_img, 270)
+        self.direction_map = {
+            "left": ((-self.speed, 0), 90),
+            "right": ((self.speed, 0), -90),
+            "up": ((0, -self.speed), 0),
+            "down": ((0, self.speed), 180)
+        }
+        self.direction = direction
+        self.original_image = pygame.transform.scale(bullet_img, (w, h))
+        self.image = pygame.transform.rotate(
+            self.original_image.copy(), self.direction_map[self.direction][1]
+        )
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x, y
-        self.direction = direction
-        self.direction_map = {
-            "left": (-self.speed, 0),
-            "right": (self.speed, 0),
-            "up": (0, -self.speed),
-            "down": (0, self.speed)
-        }
-
     def update(self, level):
-        dx, dy = self.direction_map.get(self.direction)
+        dx, dy = self.direction_map[self.direction][0]
 
         self.rect.x += dx
         self.rect.y += dy
@@ -35,5 +37,8 @@ class Bullet(pygame.sprite.Sprite):
         for row in level:
             for block in row: 
                 if isinstance(block, BrickWall) and self.rect.colliderect(block.rect):
-                    block.change_image(self.direction)
-                    self.kill()  
+                    if block.hit < 1:
+                        block.change_image(self.direction)
+                        block.hit += 1
+                    else: row.remove(block)
+                    self.kill()

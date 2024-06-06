@@ -3,7 +3,7 @@ from modules.settings import *
 from modules.blocks import *
 from modules.maps import *
 from modules.menu import *
-from modules.bullet import *
+from modules.tank import *
 
 pygame.init()
 
@@ -15,9 +15,10 @@ sc = pygame.display.set_mode((w, h))
 surface_gameplay = pygame.Surface((w_s, h_s))
 clock = pygame.time.Clock()
 
-bullet_group = pygame.sprite.Group()
-bullet = Bullet(250, 20, "left")
-bullet_group.add(bullet)
+enemy_tank = Tank(200, 200, 40, 40, "tanks/tank_player.png")
+enemy_group.add(enemy_tank)
+player_pos = (200, 560)  # Player position (example)
+
 # Main loop
 while game:
     # Drawing objects on display
@@ -32,6 +33,8 @@ while game:
         draw_map(level, surface_gameplay)
         bullet_group.draw(surface_gameplay)
         bullet_group.update(level)
+        enemy_group.draw(surface_gameplay)
+        enemy_group.update(player_pos, level)
         
     # Updating the screen
     pygame.display.update()

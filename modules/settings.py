@@ -29,3 +29,7 @@ map_data = [os.path.join(maps_folder, file)
 
 #fonts
 font = pygame.font.Font(os.path.join(assets_folder, "fonts/JoystixFont.ttf"), 24)
+
+#groups
+enemy_group = pygame.sprite.Group()
+bullet_group = pygame.sprite.Group()

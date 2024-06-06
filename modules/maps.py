@@ -22,12 +22,12 @@ def load_map(maps, index, w, h):
                     block = Block(w * x, h * y, w, h, assets_blocks_data[1])
                     a.append(block)
                 elif value_x == "3":
-                    block = Block(w * x, h * y, w, h, assets_blocks_data[2])
+                    block = TreeBlock(w * x, h * y, w, h, assets_blocks_data[2])
                     a.append(block)
                 elif value_x == "4":
-                    block = Block(w * x, h * y, w, h, assets_blocks_data[3])
+                    block = WaterBlock(w * x, h * y, w, h, assets_blocks_data[3])
                     a.append(block)
-                else: continue
+                else: a.append(None)
             blocks.append(a)
 
     return blocks
@@ -36,4 +36,5 @@ def load_map(maps, index, w, h):
 def draw_map(blocks, sc):
     for row in blocks:
         for block in row:
-            block.draw(sc)
+            if block != None:
+                block.draw(sc)

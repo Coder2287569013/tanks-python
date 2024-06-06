@@ -18,7 +18,7 @@ class BrickWall(Block):
     def __init__(self, x, y, w, h, img):
         super().__init__(x, y, w, h, img)
         self.original_img = self.img.copy()
-        self.hit = False
+        self.hit = 0
 
     def change_image(self, direction):
         if direction == "left":
@@ -37,11 +37,11 @@ class BrickWall(Block):
 #         super().__init__(x, y, w, h, img)
 
 
-# class WaterBlock(Block):
-#     def __init__(self, x, y, w, h, img):
-#         super().__init__(x, y, w, h, img)
+class WaterBlock(Block):
+    def __init__(self, x, y, w, h, img):
+        super().__init__(x, y, w, h, img)
 
 
-# class TreeBlock(Block):
-#     def __init__(self, x, y, w, h, color):
-#         super().__init__(x, y, w, h, color)
+class TreeBlock(Block):
+    def __init__(self, x, y, w, h, color):
+        super().__init__(x, y, w, h, color)
