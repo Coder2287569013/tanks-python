@@ -19,7 +19,7 @@ def load_map(maps, index, w, h):
                     block = BrickWall(w * x, h * y, w, h, assets_blocks_data[0])
                     a.append(block)
                 elif value_x == "2":
-                    block = Block(w * x, h * y, w, h, assets_blocks_data[1])
+                    block = SteelWall(w * x, h * y, w, h, assets_blocks_data[1])
                     a.append(block)
                 elif value_x == "3":
                     block = TreeBlock(w * x, h * y, w, h, assets_blocks_data[2])
@@ -32,9 +32,15 @@ def load_map(maps, index, w, h):
 
     return blocks
 
-#drawing a map on the screen
+#drawing the rest of the map on the screen
 def draw_map(blocks, sc):
     for row in blocks:
         for block in row:
-            if block != None:
+            if block != None and isinstance(block, WaterBlock) != True:
+                block.draw(sc)
+
+def draw_water(blocks, sc):
+    for row in blocks:
+        for block in row:
+            if isinstance(block, WaterBlock):
                 block.draw(sc)

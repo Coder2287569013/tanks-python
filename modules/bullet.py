@@ -1,7 +1,7 @@
 import pygame
 import os
 from modules.settings import assets_folder
-from modules.blocks import BrickWall
+from modules.blocks import BrickWall, SteelWall
 
 pygame.init()
 
@@ -11,7 +11,7 @@ bullet_img = pygame.image.load(os.path.join(assets_folder, "icons/image.png"))
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y, w, h, direction):
         pygame.sprite.Sprite.__init__(self)
-        self.speed = 2
+        self.speed = 12
         self.direction_map = {
             "left": ((-self.speed, 0), 90),
             "right": ((self.speed, 0), -90),
@@ -36,9 +36,12 @@ class Bullet(pygame.sprite.Sprite):
     def check_collision(self, level):
         for row in level:
             for block in row: 
-                if isinstance(block, BrickWall) and self.rect.colliderect(block.rect):
-                    if block.hit < 1:
-                        block.change_image(self.direction)
-                        block.hit += 1
-                    else: row.remove(block)
-                    self.kill()
+                if block != None and self.rect.colliderect(block.rect):
+                    if isinstance(block, BrickWall):
+                        if block.hit < 1:
+                            block.change_image(self.direction)
+                            block.hit += 1
+                        else: row.remove(block)
+                        self.kill()
+                    if isinstance(block, SteelWall):
+                        self.kill()

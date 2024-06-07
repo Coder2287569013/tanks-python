@@ -13,7 +13,7 @@ class Block():
     def draw(self, sc):
         sc.blit(self.img, (self.rect.x, self.rect.y))
 
-#This is gonna be later...
+#Brick wall class
 class BrickWall(Block):
     def __init__(self, x, y, w, h, img):
         super().__init__(x, y, w, h, img)
@@ -21,20 +21,24 @@ class BrickWall(Block):
         self.hit = 0
 
     def change_image(self, direction):
+        x, y = self.rect.x, self.rect.y
         if direction == "left":
             self.img = self.original_img.subsurface((0, 0, self.rect.width // 2, self.rect.height))
         elif direction == "right":
             self.img = self.original_img.subsurface((self.rect.width // 2, 0, self.rect.width // 2, self.rect.height))
-            self.rect.x += self.rect.width // 2
+            x += self.rect.width // 2
         elif direction == "up":
             self.img = self.original_img.subsurface((0, 0, self.rect.width, self.rect.height // 2))
         elif direction == "down":
             self.img = self.original_img.subsurface((0, self.rect.height // 2, self.rect.width, self.rect.height // 2))
-            self.rect.y += self.rect.height // 2
+            y += self.rect.height // 2
+        
+        self.rect = self.img.get_rect()
+        self.rect.x, self.rect.y = x, y
 
-# class SteelWall(Block):
-#     def __init__(self, x, y, w, h, img):
-#         super().__init__(x, y, w, h, img)
+class SteelWall(Block):
+    def __init__(self, x, y, w, h, img):
+        super().__init__(x, y, w, h, img)
 
 
 class WaterBlock(Block):

@@ -15,9 +15,10 @@ sc = pygame.display.set_mode((w, h))
 surface_gameplay = pygame.Surface((w_s, h_s))
 clock = pygame.time.Clock()
 
-enemy_tank = Tank(200, 200, 40, 40, "tanks/tank_player.png")
+enemy_tank = EnemyTank(200, 200, 34, 44, "tanks/enemy.png")
 enemy_group.add(enemy_tank)
-player_pos = (200, 560)  # Player position (example)
+player = PlayerTank(200,560,34,42, "tanks/tank_player.png")
+player_group.add(player) # Player position (example)
 
 # Main loop
 while game:
@@ -30,11 +31,14 @@ while game:
         sc.fill((120, 120, 120))
         sc.blit(surface_gameplay, (0, 0))
         surface_gameplay.fill((0, 0, 0))
-        draw_map(level, surface_gameplay)
+        draw_water(level, surface_gameplay)
         bullet_group.draw(surface_gameplay)
         bullet_group.update(level)
+        player_group.draw(surface_gameplay)
+        player_group.update(level)
         enemy_group.draw(surface_gameplay)
-        enemy_group.update(player_pos, level)
+        enemy_group.update((player.rect.x, player.rect.y), level)
+        draw_map(level, surface_gameplay)
         
     # Updating the screen
     pygame.display.update()
