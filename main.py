@@ -17,6 +17,7 @@ theme_sound = os.path.join(assets_folder, "sounds/theme_sound.mp3")
 
 # Screen and clock
 sc = pygame.display.set_mode((w, h))
+pygame.display.set_caption("Battle City Python")
 surface_gameplay = pygame.Surface((w_s, h_s))
 clock = pygame.time.Clock()
 
