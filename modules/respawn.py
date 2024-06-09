@@ -5,7 +5,7 @@ from modules.settings import enemy_group
 
 pygame.init()
 
-countdown = 150
+countdown = 120
 
 def respawn():
     global countdown
@@ -14,4 +14,4 @@ def respawn():
     else:
         enemy = EnemyTank(random.choice([240, 360]), 0, 29, 39, "tanks/enemy.png")
         enemy_group.add(enemy)
-        countdown = 150
+        countdown = 120
