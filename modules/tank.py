@@ -85,7 +85,7 @@ class Tank(pygame.sprite.Sprite):
     def check_alignment(self, player_pos, level):
         player_x, player_y = player_pos[0], player_pos[1]
         enemy_x, enemy_y = self.rect.centerx, self.rect.centery
-        tolerance = 5
+        tolerance = 8
 
         if abs(enemy_x - player_x) <= tolerance:
             y_min, y_max = sorted([int(enemy_y // 40), int(player_y // 40)])

@@ -47,6 +47,7 @@ while game:
         theme_sound_played = False
     
     if win:
+        # For win
         win_sound_played = win_sc(sc, w, h, theme_sound, win_sound_played)
 
     if not menu_show and not game_over and not win:
